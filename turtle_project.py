@@ -2,10 +2,18 @@
 # Import turtle
 import turtle
 
+# Set up for tody to fill in shapes
+tody_shape = []
+
+# Set up for steven to fill in shapes
+steven_shape = []
+
 # Create Turtles and Screen
 window = turtle.Screen()
 toby = turtle.Turtle()
 steven = turtle.Turtle()
+toby.shape("turtle")
+steven.shape("turtle")
 window.setup(1000, 1000)
 window.screensize(1000, 1000)
 toby.color("Red")
@@ -17,9 +25,15 @@ toby.end_fill()
 steven.begin_fill()
 steven.end_fill()
 
-# Set Position of Turtles
+# Set Position of Toby
+toby.penup()
 toby.goto(-200, 0)
+toby.pendown()
+
+# Set Position of Steven
+steven.penup()
 steven.goto(200, 0)
+steven.pendown()
 
 # Define Forward Player 1 Function
 def forward_p1():
