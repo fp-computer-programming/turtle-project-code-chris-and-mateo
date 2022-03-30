@@ -3,13 +3,15 @@
 import turtle
 
 # Set up for tody to fill in shapes
-tody_shape = []
+toby_table = []
 
 # Set up for steven to fill in shapes
-steven_shape = []
+steven_table = []
 
-# Create Turtles and Screen
+# Create Screen
 window = turtle.Screen()
+
+# Turtles
 toby = turtle.Turtle()
 steven = turtle.Turtle()
 window.setup(1000, 1000)
@@ -36,7 +38,10 @@ steven.pendown()
 
 # Define Forward Player 1 Function
 def forward_p1():
+    # Plot the pos in the table for checking later
+    toby_table.append(toby.position())
     toby.forward(50)
+    # Check if the player hits the line (COLLISION LOGIC LOLOLOL)
 
 # Define Left Player 1 Function
 def left_p1():
@@ -48,6 +53,8 @@ def right_p1():
 
 # Define Forward Player 2 Function
 def forward_p2():
+    # Plot the pos in the table for checking later
+    steven_table.append(steven.position())
     steven.forward(50)
 
 # Define Left Player 2 Function
