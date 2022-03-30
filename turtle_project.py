@@ -1,4 +1,4 @@
-# Authors: CRS and MB 03/28/22
+# Authors: CRS and MB and RJL 03/28/22
 # Import turtle
 import turtle
 
@@ -12,12 +12,11 @@ steven_shape = []
 window = turtle.Screen()
 toby = turtle.Turtle()
 steven = turtle.Turtle()
-toby.shape("turtle")
-steven.shape("turtle")
 window.setup(1000, 1000)
 window.screensize(1000, 1000)
-toby.color("Red")
-steven.color("Blue")
+
+# Player Input of Shape of Turtle and Color
+
 
 # Begin and end filling
 toby.begin_fill()
