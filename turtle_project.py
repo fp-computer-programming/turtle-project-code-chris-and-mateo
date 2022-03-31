@@ -39,9 +39,28 @@ steven.pendown()
 # Define Forward Player 1 Function
 def forward_p1():
     # Plot the pos in the table for checking later
-    toby_table.append(toby.position())
+    toby_table.append(toby.pos())
     toby.forward(50)
     # Check if the player hits the line (COLLISION LOGIC LOLOLOL)
+    if len(toby_table) > 1:
+        print(len(toby_table))
+        for index,positions in enumerate(toby_table):
+            X_startingPos = toby_table[index-1][0]
+            X_endPos = toby_table[index][0]
+
+            y_startingPos = toby_table[index-1][1]
+            y_endPos = toby_table[index][1]
+
+            turtlePos = list(toby.pos())
+            x_turtlePos = turtlePos[0]
+            y_turtlePos = turtlePos[1]
+
+            if x_turtlePos > X_startingPos and x_turtlePos < X_endPos:
+                print("between")
+            elif x_turtlePos == X_startingPos and x_turtlePos == X_endPos:
+                if y_turtlePos > y_startingPos and y_turtlePos < y_endPos:
+                    print("between")
+
 
 # Define Left Player 1 Function
 def left_p1():
@@ -56,6 +75,8 @@ def forward_p2():
     # Plot the pos in the table for checking later
     steven_table.append(steven.position())
     steven.forward(50)
+
+
 
 # Define Left Player 2 Function
 def left_p2():
