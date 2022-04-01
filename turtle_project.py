@@ -1,5 +1,6 @@
 # Authors: CRS and MB and RJL 03/28/22
 # Import turtle
+from calendar import c
 import turtle
 
 # Set up for tody to fill in shapes
@@ -17,7 +18,23 @@ steven = turtle.Turtle()
 window.setup(1000, 1000)
 window.screensize(1000, 1000)
 
-# Player Input of Shape of Turtle and Color
+# Player 1 Input of Shape of toby and Color
+# def change_color_p1(color):
+#     toby.pencolor(color)
+# def change_shape_p1(shape):
+#     toby.shape(shape)
+
+# change_color_p1(window.textinput("color", "enter a color for Player 1"))
+# change_shape_p1(window.textinput("shape", "enter a shape for Player 1"))
+
+# # Player 2 Input of shape of steven and Color
+# def change_color_p2(color):
+#     steven.pencolor(color)
+# def change_shape_p2(shape):
+#     steven.shape(shape)
+
+# change_color_p2(window.textinput("color", "enter a color for Player 1"))
+# change_shape_p2(window.textinput("shape", "enter a shape for Player 1"))
 
 
 # Begin and end filling
@@ -36,30 +53,18 @@ steven.penup()
 steven.goto(200, 0)
 steven.pendown()
 
+# Collision
+def collision_p1():
+    print()
+
 # Define Forward Player 1 Function
 def forward_p1():
     # Plot the pos in the table for checking later
-    toby_table.append(toby.pos())
-    toby.forward(50)
-    # Check if the player hits the line (COLLISION LOGIC LOLOLOL)
-    if len(toby_table) > 1:
-        print(len(toby_table))
-        for index,positions in enumerate(toby_table):
-            X_startingPos = toby_table[index-1][0]
-            X_endPos = toby_table[index][0]
-
-            y_startingPos = toby_table[index-1][1]
-            y_endPos = toby_table[index][1]
-
-            turtlePos = list(toby.pos())
-            x_turtlePos = turtlePos[0]
-            y_turtlePos = turtlePos[1]
-
-            if x_turtlePos > X_startingPos and x_turtlePos < X_endPos:
-                print("between")
-            elif x_turtlePos == X_startingPos and x_turtlePos == X_endPos:
-                if y_turtlePos > y_startingPos and y_turtlePos < y_endPos:
-                    print("between")
+    for x in range(10):
+        toby_table.append(toby.pos())
+        toby.forward(x)
+        # Check if the player hits the line (COLLISION LOGIC LOLOLOL)
+        collision_p1()
 
 
 # Define Left Player 1 Function
