@@ -1,7 +1,7 @@
 # Authors: CRS and MB and RJL 03/28/22
 # Import turtle
-import time
 import turtle
+from threading import Timer
 
 # Set up for tody to fill in shapes
 toby_table = []
@@ -9,14 +9,33 @@ toby_table = []
 # Set up for steven to fill in shapes
 steven_table = []
 
+# Claimed areas
+claimed = []
+
 # Create Screen
 window = turtle.Screen()
 
 # Turtles
 toby = turtle.Turtle()
 steven = turtle.Turtle()
+endTurtle = turtle.Turtle()
 window.setup(1000, 1000)
 window.screensize(1000, 1000)
+
+#creates border
+bdr = turtle.Turtle()
+bdr.speed(0)
+bdr.penup()
+bdr.back(350)
+bdr.pendown()
+bdr.left(90)
+bdr.forward(350)
+bdr.right(90)
+for i in range(3):
+    bdr.forward(700)
+    bdr.right(90)
+bdr.forward(350)
+bdr.hideturtle()
 
 # Player 1 Input of Shape of toby and Color
 def change_color_p1(color):
@@ -34,6 +53,7 @@ def change_color_p2(color):
     steven.pencolor(color)
 def change_shape_p2(shape):
     steven.shape(shape)
+
 
 change_color_p2(window.textinput("color", "enter a color for Player 1"))
 change_shape_p2(window.textinput("shape", "enter a shape for Player 1"))
@@ -60,12 +80,19 @@ def collision_p1():
         if int(toby.xcor()) == toby_table[x][0] and int(toby.ycor()) == toby_table[x][1]:
             toby.end_fill()
             toby.begin_fill()
+        elif toby.xcor() > 450 or toby.ycor() > 400:
+            toby.back(10)
 
 def collision_p2():
     for x in range(len(steven_table)):
         if int(steven.xcor()) == steven_table[x][0] and int(steven.ycor()) == steven_table[x][1]:
             steven.end_fill()
             steven.begin_fill()
+        elif steven.xcor() > 450 or steven.ycor() > 400:
+            steven.back(10)
+
+def endGame():
+    turtle.Turtle.write("GAME OVER!")
 
 # Define Left Player 2 Function
 def left_p2():
@@ -88,12 +115,8 @@ def move():
     moving = True
     while moving:
         toby.forward(5)
-        collision_p1()
-        toby_table.append([int(toby.xcor()),int(toby.ycor())])
 
         steven.forward(5)
-        collision_p2()
-        steven_table.append([int(steven.xcor()),int(toby.ycor())])
 
         # Make Player 1 Move
         window.onkey(left_p1, "a")
@@ -105,5 +128,14 @@ def move():
 
         window.listen()
 
-move()
+        collision_p1()
+        toby_table.append([int(toby.xcor()),int(toby.ycor())])
 
+        collision_p2()
+        steven_table.append([int(steven.xcor()),int(toby.ycor())])
+
+# TIMER OMEGALUL
+t = Timer(interval=5.0,function=endGame)
+t.start()
+
+move()
